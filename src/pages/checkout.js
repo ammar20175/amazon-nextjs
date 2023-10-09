@@ -32,7 +32,7 @@ function checkout() {
 	};
 
 	return (
-		<div className="bg-gray-100">
+		<div className="bg-gray-100 min-h-screen">
 			<Header />
 
 			<main className="lg:flex max-w-screen-2xl mx-auto">
@@ -69,13 +69,13 @@ function checkout() {
 				</div>
 
 				{/* right */}
-				<div className="flex flex-col bg-white p-10 shadow-md">
-					{items.length > 0 && (
+				{items.length > 0 && (
+					<div className="flex flex-col bg-white p-10 shadow-md">
 						<>
 							<h2 className="whitespace-nowrap">
 								Subtotal ({items.length} items):{" "}
 								<span className="font-bold">
-									<Currency quantity={total} currency="PKR" />
+									<Currency quantity={total} currency="USD" />
 								</span>
 							</h2>
 
@@ -91,8 +91,8 @@ function checkout() {
 								{!session ? "Sign in to checkout" : "Proceed to checkout"}
 							</button>
 						</>
-					)}
-				</div>
+					</div>
+				)}
 			</main>
 		</div>
 	);
