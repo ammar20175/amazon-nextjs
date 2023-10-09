@@ -1,7 +1,7 @@
 import { buffer } from "micro";
 import * as admin from "firebase-admin";
 
-const serviceAccount = require("../../../permissions.json");
+const serviceAccount = JSON.parse(process.env.FIREBASE_CONFIG_SECRET);
 
 const app = !admin.apps.length
 	? admin.initializeApp({
@@ -22,7 +22,7 @@ const fullfillOrder = async (session) => {
 		.doc(session.id)
 		.set({
 			amount: session.amount_subtotal / 100,
-			amount_Shipping: session.shipping_cost.amount_total / 100,
+			amount_shipping: session.shipping_cost.amount_total / 100,
 			images: JSON.parse(session.metadata.images),
 			timestamp: admin.firestore.FieldValue.serverTimestamp(),
 		})
